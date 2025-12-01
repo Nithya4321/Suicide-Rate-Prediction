@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicide Rate Prediction</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Inline CSS -->
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/Image1.jpg') }}"); /* Update with your image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .heading-title {
+            font-weight: bold;
+            font-size: 2rem;
+            color: white;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #000;
+        }
+
+        .form-section {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container text-center">
+            <h1 class="navbar-text mx-auto heading-title">SUICIDE RATE PREDICTION</h1>
+        </div>
+    </nav>
+
+    <div class="container form-section">
+        <form action="/index" method="post">
+
+            <div class="row">
+                <!-- Country -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Country</h5>
+                            <select name="country" id="country" required>
+                                <option value=1>Select option</option>
+                                {% for country in countries %}
+                                <option value={{country}}>{{country}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Gender</h5>
+                            <select name="gender" id="gender" required>
+                                <option value=1>Select option</option>
+                                <option value=1>Male</option>
+                                <option value=0>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Year -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Year</h5>
+                            <input name="year" id="year" required type="number" min="1985" max="2016" value="1987" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Age-Group -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Age-Group</h5>
+                            <select name="age_group" id="age_group" required>
+                                <option value=1>Select option</option>
+                                <option value=3>5-14 years</option>
+                                <option value=0>15-24 years</option>
+                                <option value=1>25-34 years</option>
+                                <option value=2>35-54 years</option>
+                                <option value=4>55-74 years</option>
+                                <option value=5>75+ years</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Suicide Count -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Suicide Count</h5>
+                            <input name="suicide_count" id="suicide_count" required type="number"
+                                min="0" max="22338" value="21" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Population -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Population</h5>
+                            <input name="population" id="population" required type="number"
+                                min="200" max="50000000" value="312900" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- GDP for year -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">GDP for year ($)</h5>
+                            <input name="gdp_for_year" id="gdp_for_year" required type="number"
+                                min="46919625" max="18120710000000" value="2156624900" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GDP per Capita -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">GDP per Capita ($)</h5>
+                            <input name="gdp_per_capita" id="gdp_per_capita" required type="number"
+                                min="250" max="126352" value="796" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Generation -->
+                <div class="col-sm-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Generation</h5>
+                            <select name="generation" id="generation" required>
+                                <option value=1>Select option</option>
+                                <option value=2>Generation X</option>
+                                <option value=4>Millennials</option>
+                                <option value=5>Silent</option>
+                                <option value=0>Boomers</option>
+                                <option value=1>G.I. Generation</option>
+                                <option value=3>Generation Z</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit" class="btn btn-secondary" />
+
+        </form>
+
+        <h3>{{ prediction_text }}</h3>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
