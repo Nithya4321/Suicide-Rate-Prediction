@@ -1,3 +1,33 @@
+# Suicide Rate Prediction
+
+This repository contains a Flask app and a Jupyter notebook for predicting suicide rates using a dataset (`suicide_data.csv`). The app includes a simple web UI in `templates/` and static assets in `static/`.
+
+Quick start
+
+1. Create and activate a virtual environment (recommended):
+
+```powershell
+python -m venv myenv
+.\myenv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+2. Run the Flask app locally:
+
+```powershell
+Set-Location "c:\Users\nithy\Downloads\Suicide-Rate-Prediction-master\Suicide-Rate-Prediction-master"
+python app.py
+```
+
+3. Open `http://127.0.0.1:5000/` in your browser.
+
+Notes
+- The project includes a `myenv/` folder (virtual environment) which is ignored by `.gitignore`; if present in this repo it was removed from tracking.
+- Large files such as models are stored under `pickle/` — be mindful of size if pushing large updates.
+
+License
+
+This repo currently has no license. Add one if you want to permit reuse.
 # Suicide Rate Prediction 
 ![image](https://user-images.githubusercontent.com/79131292/144252164-b6d936ff-001c-4b55-9728-3af3dfa2e6b4.png)
 ![image](https://user-images.githubusercontent.com/79131292/144252842-784ae6c7-951a-4ce6-acb2-8e23c4e2d780.png)
